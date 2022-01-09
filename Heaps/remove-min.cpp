@@ -1,19 +1,15 @@
-//reminder of down heapify
+//down heapify for a min map
 void down_heapify(int arr[], int n, int i){
-  int min = i; // i is the index of the root
-  l = i * 2 + 1; // l is the index of the left child
-  r = i * 2 + 2; // l is the index of the right child
+  // i is the index of the root
+  int l = i * 2 + 1; // l is the index of the left child
+  int r = i * 2 + 2; // l is the index of the right child
   
-  if(l < n && arr[l] < arr[i]){ // n is the size of the array
-    min = l;
-  }
-  if(r < n && arr[r] < arr[i]){
-    min = r;
-  }
+  if (arr[l] < arr[r]) min == l;
+  else min == r;
   
-  if(min != i){
+  if(arr[min] < arr[i]){
     swap(arr[min], arr[i]);
-    heapify(arr, n, i);
+    down_heapify(arr, n, min);
   }
 }
 
@@ -24,3 +20,5 @@ void remove_min(int arr[], int n, int i){
   n = n - 1;
   down_heapify(arr, n, i);
 }
+
+
