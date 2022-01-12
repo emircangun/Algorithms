@@ -11,5 +11,5 @@ TreeNode* leftRight(TreeNode* root)
 }
 
 bool isSymmetric(TreeNode* root) {
-    
+    .
 }
