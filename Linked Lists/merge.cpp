@@ -4,32 +4,22 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
     temp1 = head1;
     temp2 = head2;
     new_list = new SinglyLinkedList();
-
-    if (head1 != NULL && head2 != NULL) {
-        if (head1->data < head2->data){ 
+    bool checker = true;
+    
+    while (checker == true) {
+        if (temp1->data <= temp2->data) {
             new_list->insert_node(temp1->data);
-            temp1 = head1->next;
-        }
-    
-        else { 
-            new_list->insert_node(temp2->data);
-            temp2 = head2->next;
-            }
-    }
-    
-    
-    while (temp1 != NULL && temp2 != NULL) {
-        if (temp1->data < temp2->data) {
-            new_list->insert_node(temp1->data);
-            temp1 = temp1->next;
+            if( temp1->next != NULL) temp1 = temp1->next;
+            else if (temp1->next == NULL) { checker = false;}
 
         }else if(temp2->data < temp1->data){
             new_list->insert_node(temp2->data);
-            temp2 = temp2->next;
+            if( temp2->next != NULL) temp2 = temp2->next;
+            else if (temp2->next == NULL) { checker = false;}
         }
     }
     
-    if (temp1 == NULL)
+    if (temp1->next == NULL)
     {
         while (temp2 != NULL)
         {
@@ -37,7 +27,7 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
             temp2 = temp2->next;
         }    
     }
-    else
+    else if (temp2->next == NULL)
     {
         while (temp1 != NULL)
         {
@@ -45,6 +35,7 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
             temp1 = temp1->next;
         }
     }    
+    
     return new_list->head;
 
 }
